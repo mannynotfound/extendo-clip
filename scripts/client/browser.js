@@ -110,13 +110,15 @@ function setUpListeners() {
     var args = request.args.concat([sendResponse])
     fnMap[request.fn].apply(null, args)
 
+    if (sendResponse) {
+      sendResponse()
+    }
+
     return true
   })
 }
 
-if (window && window.$) {
-  $(document).ready(function() {
-    log('TWITTER APP CREATOR READY!', 'twitter')
-    window.onload = setUpListeners()
-  })
-}
+$(document).ready(function() {
+  log('TWITTER APP CREATOR READY!', 'twitter')
+  setUpListeners()
+})
