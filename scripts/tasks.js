@@ -1,4 +1,4 @@
-require('shelljs/global');
+require('shelljs/global')
 
 exports.replaceWebpack = () => {
   const replaceTasks = [{
@@ -7,18 +7,18 @@ exports.replaceWebpack = () => {
   }, {
     from: 'webpack/replace/log-apply-result.js',
     to: 'node_modules/webpack/hot/log-apply-result.js'
-  }];
+  }]
 
-  replaceTasks.forEach(task => cp(task.from, task.to));
-};
+  replaceTasks.forEach(task => cp(task.from, task.to))
+}
 
 exports.copyAssets = type => {
-  const env = type === 'build' ? 'prod' : type;
-  rm('-rf', type);
-  mkdir(type);
-  cp(`chrome/manifest.${env}.json`, type + '/manifest.json');
-  cp('-R', 'chrome/assets/', type);
-  cp('-R', 'scripts/client/', 'dev/scripts/');
-  exec(`jade -O "{ env: '${env}' }" -o ${type} chrome/views/`);
-};
+  const env = type === 'build' ? 'prod' : type
+  rm('-rf', type)
+  mkdir(type)
+  cp(`chrome/manifest.${env}.json`, type + '/manifest.json')
+  cp('-R', 'chrome/assets/', type)
+  cp('-R', 'scripts/client/', 'dev/scripts/')
+  exec(`jade -O "{ env: '${env}' }" -o ${type} chrome/views/`)
+}
 

@@ -1,23 +1,23 @@
-import React, {Component} from 'react';
-import {render} from 'react-dom';
-import Dock from 'react-dock';
-import Root from '../../app/containers/Root';
+import React, {Component} from 'react'
+import {render} from 'react-dom'
+import Dock from 'react-dock'
+import Root from '../../app/containers/Root'
 
 class InjectApp extends Component {
   constructor(props) {
-    super(props);
-    this.state = { isVisible: false };
+    super(props)
+    this.state = { isVisible: false }
   }
 
   buttonOnClick = () => {
-    this.setState({ isVisible: !this.state.isVisible });
-  };
+    this.setState({ isVisible: !this.state.isVisible })
+  }
 
   render() {
     return (
       <div>
         <button onClick={this.buttonOnClick}>
-          Open TodoApp
+          Open Extension
         </button>
         <Dock position="right" dimMode="transparent" defaultSize={0.4} isVisible={this.state.isVisible}>
           <iframe
@@ -30,14 +30,14 @@ class InjectApp extends Component {
             src={chrome.extension.getURL('inject.html')} />
         </Dock>
       </div>
-    );
+    )
   }
 }
 
 window.addEventListener('load', () => {
-  const injectDOM = document.createElement('div');
-  injectDOM.className = 'inject-react-example';
-  injectDOM.style.textAlign = 'center';
-  document.body.appendChild(injectDOM);
-  render(<InjectApp />, injectDOM);
-});
+  const injectDOM = document.createElement('div')
+  injectDOM.className = 'inject-react-example'
+  injectDOM.style.textAlign = 'center'
+  document.body.appendChild(injectDOM)
+  render(<InjectApp />, injectDOM)
+})
